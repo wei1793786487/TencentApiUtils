@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>组列表</title>
+    <style type="text/css">
+        table {border-collapse: collapse; font-size: 14px; width: 80%; margin: auto}
+        table, th, td {border: 1px solid darkslategray;padding: 10px}
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <span style="color: darkslategray; font-size: 30px">组列表</span>
+    <hr/>
+    <table class="list">
+        <tr>
+            <th>人员库名字</th>
+            <th>人员库id</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="groupList : ${groupLists}">
+            <td th:text="${groupList.groupId}"></td>
+            <td th:text="${groupList.getGroupName()}"></td>
+            <td><a th:href="@{/Group/DeletePage(GroupId=${groupList.groupId})}">删除</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

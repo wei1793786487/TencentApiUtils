@@ -1,0 +1,9 @@
+server:
+  port: 10086
+
+tenlent:
+  keys:
+    SecretId: AKIDR6g5RigRsza9QgwzzstLfxIZuHaSg6JT
+    SecretKey: HTakb1QXaXOBvj7ejfWOL5jpgLmzxhCd
+
+#debug: true
