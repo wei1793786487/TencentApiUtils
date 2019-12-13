@@ -33,7 +33,8 @@ public class FaceGroupController {
      * @param GroupId
      * @return
      */
-    @PostMapping("Create")
+//    @PostMapping("Create")
+    @PostMapping
     public ResponseEntity<String> CreateGroup(@RequestParam(value = "GroupName") String GroupName, @RequestParam(value = "GroupId") String GroupId) {
         try {
             String params = "{\"GroupName\":\"" + GroupName + "\",\"GroupId\":\"" + GroupId + "\"}";
@@ -81,7 +82,8 @@ public class FaceGroupController {
      * @return
      */
     @ResponseBody
-    @GetMapping("GetList")
+//    @GetMapping("GetList")
+    @GetMapping
     public ResponseEntity<List> GetGroupListPage() {
         List<GroupListBean> groupList = new ArrayList<>();
         try {
@@ -108,13 +110,13 @@ public class FaceGroupController {
     /**
      * 删除返回json
      *
-     * @param model
      * @param GroupId
      * @return
      */
     @ResponseBody
-    @GetMapping("Delete")
-    public String DeleteGroup(ModelMap model, @RequestParam(value = "GroupId") String GroupId) {
+//    @GetMapping("Delete")
+    @DeleteMapping
+    public String DeleteGroup(@RequestParam(value = "GroupId") String GroupId) {
         try {
             String params = "{\"GroupId\":\"" + GroupId + "\"}";
             DeleteGroupRequest req = DeleteGroupRequest.fromJsonString(params, DeleteGroupRequest.class);
@@ -132,7 +134,8 @@ public class FaceGroupController {
      * @param GroupId
      * @return
      */
-    @GetMapping("DeletePage")
+//    @GetMapping("DeletePage")
+    @DeleteMapping("DeletePage")
     public String DeleteGroupPage(ModelMap model, @RequestParam(value = "GroupId") String GroupId) {
         try {
             String params = "{\"GroupId\":\"" + GroupId + "\"}";
@@ -142,7 +145,7 @@ public class FaceGroupController {
         } catch (TencentCloudSDKException e) {
             System.out.println(e);
             model.addAttribute("error", e.toString());
-            return "error";
+            return "errorw";
         }
     }
 

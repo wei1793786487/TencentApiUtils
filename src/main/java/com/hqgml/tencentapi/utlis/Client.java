@@ -10,7 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 /**
  * @data 2019/12/13 12:20
@@ -24,6 +23,10 @@ public class Client {
     @Autowired
     private  KeyProperties keyProperties;
 
+    /**
+     * 获取 IaiClient执行对象 反射注入容器
+     * @return
+     */
     @Bean
     public  IaiClient getClient() {
         Credential cred = new Credential(keyProperties.getSecretId(), keyProperties.getSecretKey());

@@ -5,15 +5,14 @@ import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.iai.v20180301.IaiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import com.tencentcloudapi.iai.v20180301.models.*;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @data 2019/12/13 20:07
  **/
+@Controller
 @RequestMapping("Search")
 public class FaceSearchController {
 
@@ -21,7 +20,7 @@ public class FaceSearchController {
     private IaiClient client;
 
     @ResponseBody
-    @GetMapping
+    @PostMapping
     public ResponseEntity<FaceBean> Search(
             @RequestParam(value = "GroupId") String GroupId,
             @RequestParam(value = "Image", required = false) String Image,
@@ -30,7 +29,7 @@ public class FaceSearchController {
     ) {
         FaceBean faceBean = new FaceBean();
         try {
-            String params = "{\"GroupIds\":[\"" + GroupId + "\"],\"Image\":\"" + Image + "\",\"Url\":\"" + Url + "\",\"MaxPersonNum\":1}";
+            String params = "{\"GroupIds\":[\""+GroupId+"\"],\"Image\":\""+Image+"\",\"Url\":\""+Url+"\",\"MaxPersonNumPerGroup\":1,\"NeedPersonInfo\":1}";
             SearchFacesRequest req = SearchFacesRequest.fromJsonString(params, SearchFacesRequest.class);
             SearchFacesResponse resp = client.SearchFaces(req);
             Result[] results = resp.getResults();

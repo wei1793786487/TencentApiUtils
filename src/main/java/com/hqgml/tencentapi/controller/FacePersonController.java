@@ -4,6 +4,7 @@ import com.hqgml.tencentapi.bean.PersonList;
 import com.tencentcloudapi.iai.v20180301.IaiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.iai.v20180301.models.*;
@@ -12,13 +13,15 @@ import com.tencentcloudapi.iai.v20180301.models.*;
 /**
  * @data 2019/12/13 19:34
  **/
+@Controller
 @RequestMapping("Person")
 public class FacePersonController {
 
     @Autowired
     private IaiClient client;
 
-    @PostMapping("Create")
+//    @PostMapping("Create")
+    @PostMapping
     @ResponseBody
     public ResponseEntity<String> CreatePerson(
             @RequestParam(value = "GroupId") String GroupId,
@@ -38,8 +41,9 @@ public class FacePersonController {
     }
 
     @ResponseBody
-    @GetMapping("Delete")
-    public ResponseEntity<String> DeletePerson(@RequestParam(value = "PersonId ") String PersonId) {
+//    @GetMapping("Delete")
+    @DeleteMapping
+    public ResponseEntity<String> DeletePerson(@RequestParam(value = "PersonId") String PersonId) {
         try {
             String params = "{\"PersonId\":\"" + PersonId + "\"}";
             DeletePersonRequest req = DeletePersonRequest.fromJsonString(params, DeletePersonRequest.class);
@@ -51,7 +55,8 @@ public class FacePersonController {
     }
 
     @ResponseBody
-    @GetMapping("GetList")
+//    @GetMapping("GetList")
+    @GetMapping
     public ResponseEntity<PersonList> GetListPerson(@RequestParam(value = "GroupId") String GroupId) {
         PersonList personList = new PersonList();
         try {
